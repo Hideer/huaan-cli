@@ -1,0 +1,52 @@
+Arguments: 
+  /Users/yumengcheng/.nvm/versions/node/v12.12.0/bin/node /Users/yumengcheng/.yarn/bin/yarn.js install
+
+PATH: 
+  /Users/yumengcheng/.yarn/bin:/Users/yumengcheng/.config/yarn/global/node_modules/.bin:/Users/yumengcheng/.nvm/versions/node/v12.12.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/yumengcheng/Work/wanwu/flutter/bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.12.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/yumengcheng/Work/wanwu/huaan-cli/package.json: Unexpected token } in JSON at position 419
+      at JSON.parse (<anonymous>)
+      at /Users/yumengcheng/.yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/Users/yumengcheng/.yarn/lib/cli.js:310:30)
+      at /Users/yumengcheng/.yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "huaan-cli",
+    "version": "1.0.0",
+    "description": "huaan-cli",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "huaan",
+      "cli"
+    ],
+    "author": "huaan",
+    "license": "ISC",
+    "dependencies": {
+      "chalk": "^2.4.2",
+      "commander": "^2.19.0",
+      "download-git-repo": "^1.1.0",
+      "inquirer": "^6.2.2",
+      "ora": "^3.2.0"
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
