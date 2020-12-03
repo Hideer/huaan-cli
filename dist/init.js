@@ -3,6 +3,10 @@
 
 var _utils = require("./utils");
 
+var _notice = _interopRequireDefault(require("./utils/notice.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -14,8 +18,6 @@ var chalk = require('chalk');
 var ora = require('ora');
 
 var inquirer = require('inquirer');
-
-var download = require('download-git-repo');
 
 var init = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(function* (programArgs) {
@@ -69,12 +71,12 @@ var init = /*#__PURE__*/function () {
         var isFileOver = yield (0, _utils.fileIsOver)(filePath);
 
         if (isFileOver) {
-          return console.log(chalk.red('   File directory already exists!'));
+          return _notice.default.error('File directory already exists!');
         } // 当前模板是否存在
 
 
         if (!tplObj[templateName]) {
-          return console.log(chalk.red('   Template is not find !'));
+          return _notice.default.error('Template is not find !');
         }
 
         url = "".concat(tplObj[templateName].gitpath, "#").concat(tplObj[templateName].branch || 'master'); // 拼接git仓库地址带分支，默认分支master
@@ -94,16 +96,18 @@ var init = /*#__PURE__*/function () {
             cwd: path.join(process.cwd(), projectName),
             packageOrg
           }).then(() => {
-            console.log(chalk.green('\n Generation completed!'));
+            _notice.default.success('\n Generation completed!');
+
             console.log('\n To get started \n');
             console.log("    ".concat(chalk.blue("cd ".concat(projectName))));
             console.log("    ".concat(chalk.blue("".concat(packageOrg, " server")), " \n"));
           }).catch(err => {
-            console.log(chalk.red("Install failed. ".concat(err)));
+            _notice.default.error("Install failed. ".concat(err));
           });
         }).catch(() => {
           loading.fail();
-          console.log(chalk.red("Generation failed. ".concat(err)));
+
+          _notice.default.error("Generation failed. ".concat(err));
         });
       });
 

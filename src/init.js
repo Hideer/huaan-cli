@@ -3,8 +3,8 @@ const path = require('path')
 const chalk = require('chalk')
 const ora = require('ora')
 const inquirer = require('inquirer')
-const download = require('download-git-repo')
 import { install, downloadGitRepo, fileIsOver } from './utils'
+import notice from './utils/notice.js'
 
 const init = async (programArgs) => {
   const tplObj = require(`${__dirname}/template`) // 获取当前模块配置文件
@@ -50,12 +50,12 @@ const init = async (programArgs) => {
     // 当前路径是否以及有重名的文件夹
     const isFileOver = await fileIsOver(filePath)
     if (isFileOver) {
-      return console.log(chalk.red('   File directory already exists!'))
+      return notice.error('File directory already exists!')
     }
 
     // 当前模板是否存在
     if (!tplObj[templateName]) {
-      return console.log(chalk.red('   Template is not find !'))
+      return notice.error('Template is not find !')
     }
 
     url = `${tplObj[templateName].gitpath}#${tplObj[templateName].branch || 'master'}` // 拼接git仓库地址带分支，默认分支master
@@ -75,18 +75,18 @@ const init = async (programArgs) => {
           packageOrg,
         })
           .then(() => {
-            console.log(chalk.green('\n Generation completed!'))
+            notice.success('\n Generation completed!')
             console.log('\n To get started \n')
             console.log(`    ${chalk.blue(`cd ${projectName}`)}`)
             console.log(`    ${chalk.blue(`${packageOrg} server`)} \n`)
           })
           .catch((err) => {
-            console.log(chalk.red(`Install failed. ${err}`))
+            notice.error(`Install failed. ${err}`)
           })
       })
       .catch(() => {
         loading.fail()
-        console.log(chalk.red(`Generation failed. ${err}`))
+        notice.error(`Generation failed. ${err}`)
       })
   }
 

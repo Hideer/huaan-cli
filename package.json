@@ -4,12 +4,17 @@
   "description": "huaan-cli",
   "main": "index.js",
   "scripts": {
-    "compile": "babel src -d dist",
+    "compile": "babel src -d dist && npm run copyTemp",
     "watch": "npm run compile -- --watch",
-    "copyTemp": "node ./copyTemp.js"
+    "copyTemp": "node ./copyTemp.js",
+    "pub": "npm version patch && npm publish"
   },
   "bin": {
     "huaan": "./bin/www"
+  },
+  "engines": {
+    "node": ">= 9.0.0",
+    "npm": ">= 4.0.0"
   },
   "keywords": [
     "huaan",
@@ -21,7 +26,8 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@babel/preset-typescript": "^7.3.3"
+    "@babel/preset-typescript": "^7.3.3",
+    "lerna": "^3.18.4"
   },
   "dependencies": {
     "chalk": "^2.4.2",

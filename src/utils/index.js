@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const spawn = require('cross-spawn')
 import download from 'download-git-repo'
 
-stat = fs.stat
+const stat = fs.stat
 
 /**
  * 自执行 install 安装各种依赖

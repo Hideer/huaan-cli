@@ -19,7 +19,7 @@ var chalk = require('chalk');
 
 var spawn = require('cross-spawn');
 
-stat = fs.stat;
+var stat = fs.stat;
 /**
  * 自执行 install 安装各种依赖
  * @param {*} options
